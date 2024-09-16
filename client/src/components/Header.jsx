@@ -14,6 +14,14 @@ const Header = () => {
     });
   }, []);
 
+  async function logout() {
+    await fetch("http://localhost:8000/logout", {
+      credentials: "include",
+      method: "POST",
+    });
+    setUsername(null);
+  }
+
   return (
     <header>
       <Link to="/" className="logo">
@@ -23,7 +31,7 @@ const Header = () => {
         {username && (
           <>
             <Link to="/create">Create new Post</Link>
-
+            <a onClick={logout}>Logout</a>
           </>
         )}
 
