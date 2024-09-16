@@ -50,7 +50,10 @@ app.post("/login", async (req, res) => {
         if (err) {
           throw err;
         }
-        res.cookie("token", token).json("ok");
+        res.cookie("token", token).json({
+          id: userDoc._id,
+          username,
+        });
       }
     );
     // res.json()
@@ -69,8 +72,8 @@ app.get("/profile", (req, res) => {
   });
 });
 
-app.post('/logout' , async (req , res) => {
-  res.cookie('token' ,  '').json('ok');
-})
+app.post("/logout", async (req, res) => {
+  res.cookie("token", "").json("ok");
+});
 
 app.listen(8000);
