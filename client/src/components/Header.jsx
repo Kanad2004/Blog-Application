@@ -1,13 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { json, Link } from "react-router-dom";
+
 const Header = () => {
+  const [username, setUsername] = useState(null);
+  useEffect(() => {
+    fetch("http://localhost:8000/profile", {
+      credentials: "include",
+    }).then((response) => {
+      response.json().then((userInfo) => {
+        setUsername(userInfo.username);
+      });
+    });
+  }, []);
+
   return (
     <header>
-      <Link to="/" className="logo">MyBlog</Link>
+      <Link to="/" className="logo">
+        MyBlog
+      </Link>
       <nav>
-        <Link to="/login">Login</Link>
-        <Link to="/register">Register</Link>
+        {username && (
+          <>
+            <Link to="/create">Create new Post</Link>
+
+          </>
+        )}
+
+        {!username && (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
+          </>
+        )}
       </nav>
     </header>
   );
