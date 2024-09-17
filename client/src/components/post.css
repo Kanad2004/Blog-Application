@@ -1,9 +1,15 @@
-
 .post {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-rows: 1fr;
+  /* grid-template-columns: 0.9fr 1.1fr; */
   gap: 20px;
   margin-bottom: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .post {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
 }
 
 .text h2 {
@@ -27,4 +33,9 @@
 .summary {
   margin: 10px 0;
   line-height: 1.4rem;
+}
+
+.title {
+  text-decoration: none;
+  color: inherit;
 }

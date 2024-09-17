@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./Header.css";
 import { json, Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 const Header = () => {

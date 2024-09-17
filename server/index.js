@@ -21,7 +21,7 @@ mongoose.connect(
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(express.json());
 app.use(cookieParser());
-app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
@@ -108,6 +108,12 @@ app.get("/posts", async (req, res) => {
     .sort({ createdAt: -1 })
     .limit(20);
   res.json(posts);
+});
+
+app.get("/posts/:id", async (req, res) => {
+  const { id } = req.params;
+  const postDoc = await Post.findById(id).populate('author' , ['username']);
+  res.json(postDoc);
 });
 
 app.listen(8000);
