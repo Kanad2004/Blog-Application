@@ -1,25 +1,21 @@
 import React from "react";
 import "./Post.css";
-const Post = () => {
+import { formatISO9075 } from "date-fns";
+
+const Post = ({ title, summary, cover, content, createdAt, author }) => {
   return (
     <div className="post">
       <div className="image">
-        <img
-          src="https://techcrunch.com/wp-content/uploads/2023/11/IMG_9861.jpg?resize=1280,960"
-          alt=""
-        />
+        <img src={"http://localhost:8000/" + cover} alt="" />
       </div>
 
       <div className="text">
-        <h2>Humane’s Ai Pin up close</h2>
+        <h2>{title}</h2>
         <p className="info">
-          <a className="author">Dawid Paszko</a>
-          <time>2023-01-06</time>
+          <a className="author">{author.username}</a>
+          <time>{formatISO9075(new Date(createdAt))}</time>
         </p>
-        <p className="summary">
-          We spent 90 minutes with the pin and its founders at Humane’s SF
-          offices
-        </p>
+        <p className="summary">{summary}</p>
       </div>
     </div>
   );
