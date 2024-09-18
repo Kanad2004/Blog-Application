@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./Register.css";
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
